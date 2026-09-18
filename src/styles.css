@@ -154,9 +154,62 @@
 
 .tech-panel:hover .tech-cursor { opacity: 1; }
 
+/* Astra USA Academy — falling stars, aurora sections, modern card polish. */
+
+@utility section-soft {
+  background:
+    radial-gradient(120% 80% at 100% 0%, color-mix(in oklab, var(--gold) 9%, transparent), transparent 58%),
+    linear-gradient(180deg, var(--background) 0%, color-mix(in oklab, var(--surface-strong) 52%, var(--background)) 100%);
+}
+
+@utility section-tint {
+  background:
+    radial-gradient(120% 80% at 0% 0%, color-mix(in oklab, var(--primary) 10%, transparent), transparent 55%),
+    radial-gradient(120% 80% at 100% 100%, color-mix(in oklab, var(--gold) 9%, transparent), transparent 55%),
+    linear-gradient(180deg, color-mix(in oklab, var(--primary) 5%, var(--surface-strong)) 0%, var(--surface-strong) 100%);
+}
+
+@utility aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(72px);
+  pointer-events: none;
+}
+
+@utility chip-grad {
+  background: linear-gradient(135deg, var(--primary), var(--primary-bright));
+  box-shadow: 0 10px 24px color-mix(in oklab, var(--primary) 32%, transparent);
+}
+
+@keyframes star-fall {
+  0% { transform: translateY(-14px); opacity: 0; }
+  12% { opacity: var(--star-opacity, 0.9); }
+  88% { opacity: var(--star-opacity, 0.9); }
+  100% { transform: translateY(var(--fall, 640px)); opacity: 0; }
+}
+
+@utility starfield {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+@utility star {
+  position: absolute;
+  top: 0;
+  border-radius: 9999px;
+  background: var(--star-color, #fffaf0);
+  box-shadow: 0 0 6px var(--star-color, #fffaf0);
+  animation: star-fall var(--duration, 9s) linear infinite;
+  animation-delay: var(--delay, 0s);
+  will-change: transform, opacity;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   [data-reveal] { opacity: 1; transform: none; }
+  .starfield { display: none; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
